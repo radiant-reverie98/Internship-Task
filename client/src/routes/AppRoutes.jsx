@@ -4,6 +4,7 @@ import Register from "../pages/Register";
 import LandingPage from "../pages/LandingPage";
 import BlogsPage from "../pages/BlogsPage";
 import BlogDescription from "../pages/BlogDescription";
+import CreateBlog from "../pages/CreateBlog";
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/blogs" element={<BlogsPage/>}/>
         <Route path="/blog-desc" element={<BlogDescription/>}/>
+        <Route path="/blog-create" element={<CreateBlog/>}/>
       </Routes>
     </BrowserRouter>
   );
