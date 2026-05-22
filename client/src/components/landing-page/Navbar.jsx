@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,9 +18,9 @@ const Navbar = () => {
             <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-cyan-400 flex items-center justify-center shadow-sm shadow-cyan-500/10 transition-transform duration-300 group-hover:scale-105">
               <span className="text-white font-bold text-lg tracking-tight">N</span>
             </div>
-            <span className="text-lg font-bold text-slate-900 tracking-tight transition-colors duration-200 group-hover:text-slate-800">
+            <Link to="/"><span className="text-lg font-bold text-slate-900 tracking-tight transition-colors duration-200 group-hover:text-slate-800">
               Noteflux<span className="text-cyan-500">.</span>
-            </span>
+            </span></Link>
           </div>
 
           {/* Center: Desktop Navigation Links */}
