@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors"
 import authRoutes from "./src/routes/auth.routes.js"
+import blogRoutes from "./src/routes/blog.route.js"
 const app = express();
 
 
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth",authRoutes)
+app.use("/api/blog",blogRoutes)
 
 
 export default app;

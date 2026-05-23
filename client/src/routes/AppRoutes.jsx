@@ -15,9 +15,10 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/blogs" element={<BlogsPage/>}/>
-        <Route path="/blog-desc" element={<BlogDescription/>}/>
+        <Route path="/blog/:id" element={<BlogDescription/>}/>
         <Route path="/blog-create" element={<CreateBlog/>}/>
         <Route path="/edit-profile" element={<Profile/>}/>
+        
       </Routes>
     </BrowserRouter>
   );
