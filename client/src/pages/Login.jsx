@@ -1,28 +1,79 @@
 import React, { useState } from 'react';
 
+import api from '../utils/axios';
+
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [loading, setLoading] = useState(false);
+
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
-    console.log('Login submitted:', formData);
+
+    try {
+
+      setLoading(true);
+
+      const response = await api.post(
+        "/auth/login",
+        formData
+      );
+
+      console.log(response.data);
+
+      alert("Login Successful");
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        error.response?.data?.message ||
+        "Something went wrong"
+      );
+
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[#F8FAFC] p-4">
-      {/* Centered Glassmorphic Card */}
+
       <div className="w-full max-w-[400px] bg-white/80 backdrop-blur-md border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.02),0_1px_3px_rgba(0,0,0,0.01)] rounded-2xl p-8">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Log In</h2>
-        
+
+        <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">
+          Log In
+        </h2>
+
+
         <form onSubmit={handleSubmit} className="space-y-4">
+
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-slate-600 uppercase tracking-wider" htmlFor="email">
+
+            <label
+              className="text-xs font-semibold text-slate-600 uppercase tracking-wider"
+              htmlFor="email"
+            >
               Email Address
             </label>
+
             <input
               id="email"
               name="email"
@@ -35,10 +86,16 @@ const Login = () => {
             />
           </div>
 
+
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-slate-600 uppercase tracking-wider" htmlFor="password">
+
+            <label
+              className="text-xs font-semibold text-slate-600 uppercase tracking-wider"
+              htmlFor="password"
+            >
               Password
             </label>
+
             <input
               id="password"
               name="password"
@@ -51,20 +108,33 @@ const Login = () => {
             />
           </div>
 
+
           <button
             type="submit"
-            className="w-full mt-2 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold py-2.5 px-4 rounded-xl transition-all active:scale-[0.99]"
+            disabled={loading}
+            className="w-full mt-2 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold py-2.5 px-4 rounded-xl transition-all active:scale-[0.99] disabled:opacity-70"
           >
-            Sign In
+            {
+              loading
+                ? "Signing In..."
+                : "Sign In"
+            }
           </button>
+
         </form>
+
 
         <p className="text-sm text-center text-slate-500 mt-6">
           Don't have an account?{' '}
-          <a href="/register" className="font-medium text-cyan-600 hover:text-cyan-500 transition-colors">
+
+          <a
+            href="/register"
+            className="font-medium text-cyan-600 hover:text-cyan-500 transition-colors"
+          >
             Register
           </a>
         </p>
+
       </div>
     </div>
   );
