@@ -67,13 +67,12 @@ client/
 │   ├── components/
 │   ├── pages/
 │   ├── routes/
-│   ├── layouts/
-│   └── services/
+│   ├── assets/
+│   └── utils/
 
 server/
 ├── config/
 ├── controllers/
 ├── middleware/
 ├── routes/
-├── Database/
-└── utils/
+
